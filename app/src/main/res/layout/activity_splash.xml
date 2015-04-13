@@ -21,14 +21,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toshali Randev, Maggie OToole, Amanual"
+        android:layout_centerHorizontal="true"
         android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal"
         android:textColor="#fffff6f7"
         android:textSize="20sp"
         android:typeface="monospace"
         android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="41dp" />
 
     <TextView

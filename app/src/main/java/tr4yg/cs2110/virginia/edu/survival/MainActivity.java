@@ -1,9 +1,17 @@
 package tr4yg.cs2110.virginia.edu.survival;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,7 +20,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+
+
+
+    Button bulletButton = (Button)findViewById(R.id.bullet_button);
+
+    bulletButton.setOnClickListener(new View.OnClickListener(){
+
+        public void onClick(View a) {
+            Intent service = new Intent(MainActivity.this, Bullets.class);
+            startActivity(service);
+        }
+    });
+  }
 
 
     @Override
