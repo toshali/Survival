@@ -10,6 +10,10 @@ import android.graphics.Rect;
 import android.graphics.Paint;
 import android.graphics.Color;
 
+import org.w3c.dom.Attr;
+
+import java.text.AttributedCharacterIterator;
+
 /**
  * Created by toshali on 4/13/15.
  */
@@ -19,13 +23,8 @@ public class Bullets extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Rect ourRect = new Rect();
-        ourRect.set(0,0,canvas.getWidth(),canvas.getHeight()/2);
-        Paint blue = new Paint();
-        blue.setColor(Color.BLUE);
-        blue.setStyle(Paint.Style.FILL);
 
-        canvas.drawRect(ourRect, blue);
+
         if (x < canvas.getWidth()) {
             x += 10;
         }
@@ -40,13 +39,29 @@ public class Bullets extends View {
         invalidate();
     }
 
-    public Bullets(Context context){
-        super(context);
+    public void init(Context context){
         bball = BitmapFactory.decodeResource(getResources(),R.drawable.missile);
         int x = 0;
         int y = 0;
-
     }
+
+    public Bullets(Context context) {
+        super(context);
+        init(context);
+    }
+    public Bullets(Context context, AttributeSet attrs){
+        super(context, attrs);
+        init(context);
+    }
+
+    public Bullets(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init(context);
+    }
+
+    public void View(Context context, AttributeSet attrs){}
+
+    public void View(Context context, AttributeSet attrs, int defStyle){}
 
 
 

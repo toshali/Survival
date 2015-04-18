@@ -1,10 +1,13 @@
 package tr4yg.cs2110.virginia.edu.survival;
 
 import android.content.Intent;
+import android.graphics.PointF;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
@@ -12,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,15 +27,47 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    Button bulletButton = (Button)findViewById(R.id.bullet_button);
+//    Button bulletButton = (Button)findViewById(R.id.bullet_button);
+//
+//    bulletButton.setOnClickListener(new View.OnClickListener(){
+//
+//        public void onClick(View a) {
+//            //need to add view to xml here
+//
+//
+//        }
+//    });
 
-    bulletButton.setOnClickListener(new View.OnClickListener(){
+        final ImageView human = (ImageView)findViewById(R.id.imageView);
 
-        public void onClick(View a) {
-            Intent service = new Intent(MainActivity.this, Bullets.class);
-            startActivity(service);
-        }
-    });
+        human.setOnTouchListener(new View.OnTouchListener() {
+            PointF DownPT = new PointF(); // Record Mouse Position When Pressed Down
+            PointF StartPT = new PointF(); // Record Start Position of 'img'
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int eid = event.getAction();
+                switch (eid) {
+                    case MotionEvent.ACTION_MOVE:
+                        PointF mv = new PointF(event.getX() - DownPT.x, event.getY() - DownPT.y);
+                        human.setX((int) (StartPT.x + mv.x));
+                        //human.setY((int) (StartPT.y + mv.y));
+                        StartPT = new PointF(human.getX(), human.getY());
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        DownPT.x = event.getX();
+                       // DownPT.y = event.getY();
+                        StartPT = new PointF(human.getX(), human.getY());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        // Nothing have to do
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
   }
 
 
